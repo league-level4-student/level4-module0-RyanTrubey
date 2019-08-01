@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 public class Maze {
 	//1. Create a 2D array of cells. Don't initialize it.
-
+	Cell[][] cells;
 	private int width;
 	private int height;
 
@@ -12,7 +12,7 @@ public class Maze {
 		this.height = h;
 
 		//2. Initialize the cells using the width and height varibles
-
+		cells = new Cell[width][height];
 		//3. Iterated through each cell and initialize it
 		//   using i and j as the location
 		
