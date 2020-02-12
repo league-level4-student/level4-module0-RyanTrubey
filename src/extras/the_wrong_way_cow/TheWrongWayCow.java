@@ -46,7 +46,87 @@ public class TheWrongWayCow {
     public static int[] findWrongWayCow(final char[][] field) {
         // Fill in the code to return the x,y coordinate position of the
         // head (letter 'c') of the wrong way cow!
+    	int left = 0;
+    	int right = 0;
+    	int up = 0;
+    	int down = 0;
+    	String direction = "";
         
+    	for(int i = 0; i < field.length; i++) {
+        	for(int j = 0; j < field[0].length-2; j++) {
+        		if(field[i][j] == 'c' && field[i][j+1] =='o' && field[i][j+2] == 'w') {
+        			left++;
+        			if(left >= 2) {
+        				direction = "left";
+        				break;
+        			}
+        		}
+        		
+        		if(field[i][j] == 'w' && field[i][j+1] =='o' && field[i][j+2] == 'c') {
+        			right++;
+        			if(right >= 2) {
+        				direction = "right";
+        				break;
+        			}
+        		}
+        	}
+        }
+    	
+    	for(int i = 0; i < field.length-2; i++) {
+    		for(int j = 0; j < field[0].length; j++) {
+    			if(field[i][j] == 'c' && field[i+1][j] =='o' && field[i+2][j] == 'w') {
+        			down++;
+        			if(down >= 2) {
+        				direction = "down";
+        				break;
+        			}
+        		}
+        		
+        		if(field[i][j] == 'w' && field[i+1][j] =='o' && field[i+2][j] == 'c') {
+        			up++;
+        			if(left >= 2) {
+        				direction = "up";
+        				break;
+        			}
+        		}
+    		}
+    	}
+        
+        for(int i = 0; i < field.length; i++) {
+        	for(int j = 0; j < field[0].length-2; j++) {
+        		if(field[i][j] == 'c' && field[i][j+1] =='o' && field[i][j+2] == 'w') {
+        			if(!direction.equals("left")) {
+        				int[] coordinate = {i, j};
+        				return coordinate;
+        			}
+        		}
+        		
+        		if(field[i][j] == 'w' && field[i][j+1] =='o' && field[i][j+2] == 'c') {
+        			if(!direction.equals("right")) {
+        				int[] coordinate = {i, j+2};
+        				return coordinate;
+        			}
+        		}
+        	}
+        }
+        
+        for(int i = 0; i < field.length-2; i++) {
+        	for(int j = 0; j < field[0].length; j++) {
+        		if(field[i][j] == 'c' && field[i+1][j] =='o' && field[i+2][j] == 'w') {
+        			if(!direction.equals("left")) {
+        				int[] coordinate = {i, j};
+        				return coordinate;
+        			}
+        		}
+        		
+        		if(field[i][j] == 'w' && field[i+1][j] =='o' && field[i+2][j] == 'c') {
+        			if(!direction.equals("left")) {
+        				int[] coordinate = {i+2, j};
+        				return coordinate;
+        			}
+        		}
+        	}
+        }
         return null;
     }
 }
