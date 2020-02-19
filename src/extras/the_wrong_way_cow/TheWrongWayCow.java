@@ -75,58 +75,62 @@ public class TheWrongWayCow {
     	for(int i = 0; i < field.length-2; i++) {
     		for(int j = 0; j < field[0].length; j++) {
     			if(field[i][j] == 'c' && field[i+1][j] =='o' && field[i+2][j] == 'w') {
+        			up++;
+        			if(up >= 2) {
+        				direction = "up";
+        				break;
+        			}
+        		}
+        		
+        		if(field[i][j] == 'w' && field[i+1][j] =='o' && field[i+2][j] == 'c') {
         			down++;
         			if(down >= 2) {
         				direction = "down";
         				break;
         			}
         		}
-        		
-        		if(field[i][j] == 'w' && field[i+1][j] =='o' && field[i+2][j] == 'c') {
-        			up++;
-        			if(left >= 2) {
-        				direction = "up";
-        				break;
-        			}
-        		}
     		}
     	}
-        
-        for(int i = 0; i < field.length; i++) {
+    	
+    	
+    	
+    	
+    	
+    	for(int i = 0; i < field.length; i++) {
         	for(int j = 0; j < field[0].length-2; j++) {
         		if(field[i][j] == 'c' && field[i][j+1] =='o' && field[i][j+2] == 'w') {
-        			if(!direction.equals("left")) {
-        				int[] coordinate = {i, j};
+        			if(!(direction.equals("left"))) {
+        				int[] coordinate = {j, i};
         				return coordinate;
         			}
         		}
         		
         		if(field[i][j] == 'w' && field[i][j+1] =='o' && field[i][j+2] == 'c') {
-        			if(!direction.equals("right")) {
-        				int[] coordinate = {i, j+2};
+        			if(!(direction.equals("right"))) {
+        				int[] coordinate = {j, i};
         				return coordinate;
         			}
         		}
         	}
         }
-        
-        for(int i = 0; i < field.length-2; i++) {
-        	for(int j = 0; j < field[0].length; j++) {
-        		if(field[i][j] == 'c' && field[i+1][j] =='o' && field[i+2][j] == 'w') {
-        			if(!direction.equals("left")) {
-        				int[] coordinate = {i, j};
+    	
+    	for(int i = 0; i < field.length-2; i++) {
+    		for(int j = 0; j < field[0].length; j++) {
+    			if(field[i][j] == 'c' && field[i+1][j] =='o' && field[i+2][j] == 'w') {
+        			if(!(direction.equals("up"))) {
+        				int[] coordinate = {j, i};
         				return coordinate;
         			}
         		}
         		
         		if(field[i][j] == 'w' && field[i+1][j] =='o' && field[i+2][j] == 'c') {
-        			if(!direction.equals("left")) {
-        				int[] coordinate = {i+2, j};
+        			if(!(direction.equals("down"))) {
+        				int[] coordinate = {j, i};
         				return coordinate;
         			}
         		}
-        	}
-        }
+    		}
+    	}
         return null;
     }
 }
